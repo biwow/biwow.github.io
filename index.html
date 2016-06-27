@@ -33,7 +33,7 @@
           <h1>
 <a id="biwowgithubcom" class="anchor" href="#biwowgithubcom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{{item.title}}</h1>
 
-<p>{{item.content | trustHtml}}</p>
+<p ng-bind-html="item.content | trustHtml"></p>
         </section>
 
         <footer>
