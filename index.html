@@ -56,7 +56,7 @@
         });
     });
 	
-	angular.filter("trustHtml", function ($sce) {  
+	app.filter("trustHtml", function ($sce) {  
 		return function (text) {  
 			return $sce.trustAsHtml(text);  
 		}  
