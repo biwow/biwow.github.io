@@ -5,14 +5,17 @@
   <title>biwow</title>
   <script src="asset/biwow/markdown.js"></script>
   <script src="asset/biwow/jquery-2.1.0.js"></script>
+  <link rel="stylesheet" href="asset/biwow/css.css">
 </head>
 <body>
   <div id="content"></div>
   <script>
   $(function () {
     document.getElementById('content').innerHTML =
-      marked('## Centos
-
+      marked(document.getElementById("text-input").value);
+	  });
+  </script>
+  <textarea id="text-input" style="display:none">
 * [安装]
 	* [安装docker jenkins](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85docker-jenkins)
 	* [安装RabbitMQ](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85RabbitMQ)
@@ -46,8 +49,7 @@
 * [架构设计]
 	* [架构总纲](https://github.com/biwow/LNMP/wiki/%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BA%B2)
 * [语言笔记]
-	* [Nodejs](https://github.com/biwow/LNMP/wiki/Nodejs-tutorial)');
-	});
-  </script>
+	* [Nodejs](https://github.com/biwow/LNMP/wiki/Nodejs-tutorial)
+</textarea>
 </body>
 </html>
