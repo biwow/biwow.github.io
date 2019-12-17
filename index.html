@@ -328,6 +328,12 @@ document.getElementById('header-logo').addEventListener('click', function () {
       window.location.href = '/document/#/docs-cn/'
     } 
   })
+window.onload = function () {
+    console.log(window.location.hash) 
+    if(window.location.hash == "#/"){
+      window.location.href = '/document/#/docs-cn/'
+    }
+  }  
 </script>
 
 </body>
