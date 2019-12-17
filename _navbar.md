@@ -1,3 +1,4 @@
+- home()
 - category
   - [Vue](Vue/)
   - [ionic](ionic/)
@@ -10,10 +11,6 @@
   - [iOS](iOS/)
   - [document](document/)
 
-- help
-  - [gitHub](https://github.com/taoGod/extraordinarywen)
-  - [help](help/)
-  - [home]()
 
   <!-- - [:us:, :uk:](/) -->
   <!-- - [:cn:](/zh-cn/) -->
