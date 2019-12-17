@@ -275,8 +275,7 @@
 <script>
     window.$docsify = {
     alias: {
-        '/.*/_navbar.md': '/_navbar.md',
-        '/docs-cn/(.*)': '/docs-cn/$1'
+        '/.*/_navbar.md': '/_navbar.md'
       },
       notFoundPage: '_404.html',
       auto2top: true,
@@ -299,15 +298,9 @@
     }
 
   </script>
-<script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('/lib/sw.js')
-    }
-  </script>
+
 
 <script src="./lib/docsify.min.js"></script>
-
-
 
 <script src="./lib/plugins/search.js"></script>
 <script src="./lib/plugins/zoom-image.js"></script>
@@ -321,15 +314,6 @@
 <script src="./lib/prismjs/components/prism-python.min.js"></script>
 <script src="./lib/prismjs/components/prism-csharp.min.js"></script>
 <script src="./lib/prismjs/components/prism-javascript.min.js"></script>
-
-<script>
-window.onload = function () {
-    console.log(window.location.hash) 
-    if(window.location.hash == "#/"){
-      window.location.href = '/#/docs-cn/'
-    }
-  }  
-</script>
 
 </body>
 </html>
