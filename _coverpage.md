@@ -1,9 +1,3 @@
-![logo](assets/images/framework/icon.svg)
-
-# 北山湖臭皮匠 <small>1.0</small>
-
-> You need to believe that something extraordinary is possible.
-
 [Vue](Vue/)
 [ionic](ionic/)
 [Flutter](Flutter/)
