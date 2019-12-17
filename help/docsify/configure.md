@@ -1,8 +1,12 @@
+这个后边慢慢补充吧，可以进该网站的 [代码仓库](https://github.com/taoGod/extraordinarywen)，瞅一眼 `index.html`。<br>
+也可以看一下 [官网](https://docsify.js.org/#/configuration)。
+
+```
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>北山湖臭皮匠</title>
+    <title>非凡的阿文</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="description" content="Description" />
     <meta
@@ -36,7 +40,7 @@
     <div id="app">加载中...</div>
     <script>
       window.$docsify = {
-        name: '小将',
+        name: '阿文',
         repo: 'https://github.com/taoGod/extraordinarywen', // 右上角小部件
         loadSidebar: true, //侧边栏，默认_sidebar.md，可自己指定，如：loadSidebar:'_side.md'
         alias: {
@@ -107,3 +111,5 @@
     <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   </body>
 </html>
+
+```
