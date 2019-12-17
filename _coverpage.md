@@ -8,8 +8,4 @@
 
 <!-- background image -->
 
-<!-- ![](assets/images/framework/bj.jpg) -->
-
-<!-- background color -->
-
-<!-- ![color](#f0f0f0) -->
+<!-- ![](asset/images/bj.jpg) -->
