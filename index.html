@@ -1,68 +1,335 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="UTF-8">
   <title>biwow</title>
-  <script src="asset/biwow/markdown.js"></script>
-  <script src="asset/biwow/jquery-2.1.0.js"></script>
-  <link rel="stylesheet" href="asset/biwow/css.css">
+  <link rel="icon" href="assets/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="./lib/themes/dark.css">
+ 
+  <style type="text/css">
+    .header { position: fixed; height:60px; width:100%; padding:10px 20px; top:0; left:0;border-bottom:1px solid #dddddd;
+     background: #160033; display: flex; align-items: center; z-index: 1000; }
+     .header img {
+       height:22px;
+       cursor: pointer;
+     }
+    .sidebar {top:50px; }
+    .footer {
+     height: 60px; border-top: 1px solid #dddddd; background: #ffffff;
+    }
+    .content {position: relative; left:150px;}
+
+    main {height:auto;}
+   .app-nav::after {
+   content: ''; position: absolute; top: 8px; right: -8px; border-left: 8px solid transparent; border-right: 8px solid
+   transparent; border-top: 8px solid #32a4be; }
+   .app-nav {
+     margin-top:18px;
+     color:#ffffff;
+     z-index:1001;
+     position: fixed;
+   }
+   .app-nav a {
+     color: rgb(52,73,94)
+   }
+
+   .app-nav ul li ul {
+     width:100px;
+   }
+
+   .app-nav li {
+     display: inline-block;
+     margin: 0 1rem;
+     padding: 0;
+     font-size: 16px;
+     position: relative
+   }
+
+   .sidebar li {
+     margin: 0;
+   }
+   .doc-link {
+     color: #ffffff;
+     font-size: 16px;
+     text-decoration: none;
+     position: absolute;
+     right: 130px;
+   }
+   .doc-link:hover{
+     text-decoration: none;
+   }
+   body {
+     font-size: 16px;
+   }
+
+   .markdown-section p.info,.markdown-section tr:nth-child(2n) {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section p.info {
+     position: relative;
+     margin: 2em 0;
+     padding: 9pt 24px 9pt 30px;
+     border-left: 4px solid #20a162;
+     border-top-right-radius: 2px;
+     border-bottom-right-radius: 2px
+   }
+
+   .markdown-section p.info:before {
+     position: absolute;
+     top: 14px;
+     left: -9pt;
+     width: 20px;
+     height: 20px;
+     border-radius: 100%;
+     background-color: #20a162;
+     color: #fff;
+     content: "i";
+     text-align: center;
+     font-weight: 700;
+     font-size: 14px;
+     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+     line-height: 20px
+   }
+
+   .markdown-section p.info code {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section a {
+     color: var(--theme-color,#42b983);
+     font-weight: 600;
+     text-decoration: none;
+   }
+
+   .markdown-section p.info em {
+     color: #34495e
+   }
+
+   .markdown-section p.warning,.markdown-section tr:nth-child(2n) {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section p.warning {
+     border-bottom-right-radius: 2px;
+     border-left: 4px solid #fcc307;
+     border-top-right-radius: 2px;
+     margin: 2em 0;
+     padding: 9pt 24px 9pt 30px;
+     position: relative
+   }
+
+   .markdown-section p.warning:before {
+     background-color: #fcc307;
+     border-radius: 100%;
+     color: #fff;
+     content: "!";
+     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+     font-size: 14px;
+     font-weight: 700;
+     left: -9pt;
+     line-height: 20px;
+     position: absolute;
+     height: 20px;
+     width: 20px;
+     text-align: center;
+     top: 14px
+   }
+
+   .markdown-section p.warning code {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section p.warning em {
+     color: #34495e
+   }
+
+   .markdown-section section.warning,.markdown-section tr:nth-child(2n) {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.warning {
+     border-bottom-right-radius: 2px;
+     border-left: 4px solid #fcc307;
+     border-top-right-radius: 2px;
+     margin: 2em 0;
+     padding: 9pt 24px 9pt 30px;
+     position: relative
+   }
+
+   .markdown-section section.warning:before {
+     background-color: #fcc307;
+     border-radius: 100%;
+     color: #fff;
+     content: "!";
+     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+     font-size: 14px;
+     font-weight: 700;
+     left: -9pt;
+     line-height: 20px;
+     position: absolute;
+     height: 20px;
+     width: 20px;
+     text-align: center;
+     top: 14px
+   }
+
+   .markdown-section section.warning code {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.warning em {
+     color: #34495e
+   }
+
+   .markdown-section section.info,.markdown-section tr:nth-child(2n) {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.info {
+     border-bottom-right-radius: 2px;
+     border-left: 4px solid #20a162;
+     border-top-right-radius: 2px;
+     margin: 2em 0;
+     padding: 9pt 24px 9pt 30px;
+     position: relative
+   }
+
+   .markdown-section section.info:before {
+     background-color: #20a162;
+     border-radius: 100%;
+     color: #fff;
+     content: "i";
+     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+     font-size: 14px;
+     font-weight: 700;
+     left: -9pt;
+     line-height: 20px;
+     position: absolute;
+     height: 20px;
+     width: 20px;
+     text-align: center;
+     top: 14px
+   }
+
+   .markdown-section section.info code {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.info em {
+     color: #34495e
+   }
+
+   .markdown-section section.tip,.markdown-section tr:nth-child(2n) {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.tip {
+     border-bottom-right-radius: 2px;
+     border-left: 4px solid #f66;
+     border-top-right-radius: 2px;
+     margin: 2em 0;
+     padding: 9pt 24px 9pt 30px;
+     position: relative
+   }
+
+   .markdown-section section.tip:before {
+     background-color: #f66;
+     border-radius: 100%;
+     color: #fff;
+     content: "!";
+     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
+     font-size: 14px;
+     font-weight: 700;
+     left: -9pt;
+     line-height: 20px;
+     position: absolute;
+     height: 20px;
+     width: 20px;
+     text-align: center;
+     top: 14px
+   }
+
+   .markdown-section section.tip code {
+     background-color: #f8f8f8
+   }
+
+   .markdown-section section.tip em {
+     color: #34495e
+   }
+
+   @media screen and (max-width:600px) {
+      .content {left:0;padding-top: 50px;}
+      .doc-link {position: relative;text-align: right;right:0;}
+    }
+  </style>
 </head>
 <body>
-  <div id="content"></div>
-  <script>
-  $(function () {
-    document.getElementById('content').innerHTML =
-      marked(document.getElementById("text-input").value);
-	  });
-  </script>
-  <textarea id="text-input" style="display:none">
-## Centos
+<header class="header">
+  <span style="color:#fff;font-size:26px">Biwow</span>
+</header>
+<div id="app"></div>
+<script>
+    window.$docsify = {
+    alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        '/docs-cn/(.*)': '/docs-cn/$1'
+      },
+      notFoundPage: '_404.html',
+      auto2top: true,
+      basePath: '',
+      executeScript: true,
+      loadNavbar: true,
+      loadSidebar: true,
+      autoHeader: true,
+      coverpage: false,
+      subMaxLevel: 2,
+      mergeNavbar: true,
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      search: {
+        placeholder: {
+          '/':'Search',
+          '/docs-cn/': '搜索'
+        },
+        depth:3
+      }
+    }
 
-* [安装]
-	* [安装docker jenkins](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85docker-jenkins)
-	* [安装RabbitMQ](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85RabbitMQ)
-	* [Golang 安装及基本操作](https://github.com/biwow/LNMP/wiki/Golang-%E5%AE%89%E8%A3%85%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C)
-	* [安装maven](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85maven)
-	* [Docker安装及常用命令](https://github.com/biwow/LNMP/wiki/Docker%E5%AE%89%E8%A3%85%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
-	* [docker compose部署服务](https://github.com/biwow/LNMP/wiki/docker-compose%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1)
-	* [配置C和C 环境](https://github.com/biwow/LNMP/wiki/%E9%85%8D%E7%BD%AEC%E5%92%8CC--%E7%8E%AF%E5%A2%83)
-	* [安装ejabberd](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85ejabberd)
-	* [安装solr](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85solr)
-	* [安装apache](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85apache)
-	* [安装Thrift](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85Thrift)
-	* [安装hadoop](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85hadoop)
-	* [安装pptp VPN](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85pptp-VPN)
-	* [安装R语言](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85R%E8%AF%AD%E8%A8%80)
-	* [安装nodejs](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85notejs)
-	* [安装git](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85git)
-	* [安装svn](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85svn)
-	* [安装Haproxy Keepalived](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85Haproxy-Keepalived)
-	* [安装MongoDB](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85MongoDB)
-	* [安装HTTPSQS](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85HTTPSQS)
-	* [安装ruby](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85ruby)
-	* [安装MYSQL](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85MYSQL)
-	* [安装配置php](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEphp)
-	* [安装nginx](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85nginx)
-	* [安装nfs](https://github.com/biwow/LNMP/wiki/%E5%AE%89%E8%A3%85nfs)
-	
-* [常用Shell命令](https://github.com/biwow/LNMP/wiki/%E5%B8%B8%E7%94%A8shell%E5%91%BD%E4%BB%A4)
-* [调试优化]
-	* [Java调试](https://github.com/biwow/LNMP/wiki/Java%E8%B0%83%E8%AF%95)
-	* [Mysql调优](https://github.com/biwow/LNMP/wiki/Mysql%E8%B0%83%E4%BC%98)
-* [架构设计]
-	* [架构总纲](https://github.com/biwow/LNMP/wiki/%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BA%B2)
-* [随笔记]
-	* [Nodejs](https://github.com/biwow/LNMP/wiki/Nodejs-tutorial)
-	* [Spring](https://github.com/biwow/LNMP/wiki/Spring)
-		* [AOP](https://github.com/biwow/LNMP/wiki/AOP)
-		* [actuator](https://github.com/biwow/LNMP/wiki/actuator)
-		* [logback](https://github.com/biwow/LNMP/wiki/logback)
-	* [Spring Cloud](https://github.com/biwow/LNMP/wiki/SpringCloud)
-		* [负载均衡消费服务](https://github.com/biwow/LNMP/wiki/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%B6%88%E8%B4%B9%E6%9C%8D%E5%8A%A1)
-		* [断路器（Hystrix）](https://github.com/biwow/LNMP/wiki/%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%88Hystrix%EF%BC%89)
-		* [Eureka](https://github.com/biwow/LNMP/wiki/Eureka)
-		* [Bus](https://github.com/biwow/LNMP/wiki/Bus)
-		* [Config](https://github.com/biwow/LNMP/wiki/Config)
-</textarea>
+  </script>
+<script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/lib/sw.js')
+    }
+  </script>
+
+<script src="./lib/docsify.min.js"></script>
+
+
+
+<script src="./lib/plugins/search.js"></script>
+<script src="./lib/plugins/zoom-image.js"></script>
+<script src="./lib/docsify-copy-code.min.js"></script>
+<script src="./lib/plugins/emoji.min.js"></script>
+<script src="./lib/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<script src="./lib/prismjs/components/prism-go.min.js"></script>
+<script src="./lib/prismjs/components/prism-java.min.js"></script>
+<script src="./lib/prismjs/components/prism-json.min.js"></script>
+<script src="./lib/prismjs/components/prism-bash.min.js"></script>
+<script src="./lib/prismjs/components/prism-python.min.js"></script>
+<script src="./lib/prismjs/components/prism-csharp.min.js"></script>
+<script src="./lib/prismjs/components/prism-javascript.min.js"></script>
+
+<script>
+document.getElementById('header-logo').addEventListener('click', function () { 
+    if(window.location.href.indexOf('docs-cn')>-1){
+      window.location.href = '/document/#/docs-cn/'
+    } 
+  })
+</script>
+
 </body>
 </html>
+
