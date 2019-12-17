@@ -7,4 +7,4 @@
 
 
 <!-- background image -->
-![](asset/images/bj.jpg)
+![](asset/images/pg.jpg)
