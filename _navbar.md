@@ -1,12 +1,7 @@
 - [home]()
-- category
-  - [Vue](Vue/)
-  - [ionic](ionic/)
-  - [Flutter](Flutter/)
-  - [AI](AI/)
-  - [go](go/)
-
-- document
-  - [java](java/)
-  - [iOS](iOS/)
-  - [document](document/)
+- 分类
+  - [区块链](content/blockchain/)
+  - [Java](content/java/)
+  - [Linux](content/linux/)
+  - [Go](content/go/)
+  - [架构](content/architect/)
