@@ -1,4 +1,4 @@
 - [名词解释]
-  - [基础](document/context/base.md)
-  - [共识](document/context/consensus.md)
-  - [加密](document/context/crypto.md)
+  - [基础](content/blockchain/context/base.md)
+  - [共识](content/blockchain/context/consensus.md)
+  - [加密](content/blockchain/context/crypto.md)
