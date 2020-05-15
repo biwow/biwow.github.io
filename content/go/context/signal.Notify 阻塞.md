@@ -1,52 +1,99 @@
+# 优雅退出方法一
 
 ```
-package main;
+package main
 
 import (
+	"fmt"
+	"net/http"
 	"os"
 	"os/signal"
-	"fmt"
+	"syscall"
+	"time"
 )
 
-//signal包中提供了两个函数
-//Notifyf()用于监听信号
-//Stop()用于停止监听
+var status = true
 
+// 优雅退出go守护进程
 func main()  {
-	ch := make(chan os.Signal);
-	//notify用于监听信号
-	//参数1表示接收信号的channel
-	//参数2及后面的表示要监听的信号
-	//os.Interrupt 表示中断
-	//os.Kill 杀死退出进程
-	signal.Notify(ch, os.Interrupt, os.Kill);
+	//创建监听退出chan
+	c := make(chan os.Signal)
+	//监听指定信号 ctrl+c kill
+	signal.Notify(c, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+	go func() {
+		for s := range c {
+			switch s {
+			case syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT:
+				fmt.Println("退出", s)
+				ExitFunc()
+			default:
+				fmt.Println("other", s)
+			}
+		}
+	}()
 
-	//获取信号，如果没有会一直阻塞在这里。
-	s := <-ch;
-	//我们通过Ctrl+C或用taskkill /pid -t -f来杀死进程，查看效果。
-	fmt.Println("信号：", s);
+	fmt.Println("进程启动...")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if status {
+			w.Write([]byte("Hello, World!"))
+		} else {
+			w.Write([]byte("stop!"))
+		}
+
+	})
+	http.ListenAndServe(":8080", nil)
+}
+
+func ExitFunc()  {
+	fmt.Println("开始退出...")
+	fmt.Println("执行清理...")
+	fmt.Println("结束退出...")
+	status = false
+	go stop()
+
+}
+
+func stop() {
+	fmt.Println("stop 5...")
+	time.Sleep(time.Duration(5) * time.Second)
+	fmt.Println("stop ...")
+	//os.Exit(0)
 }
 ```
 
+# 优雅退出方法二
+
 ```
-package main;
+package main
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
-	"fmt"
+	"time"
 )
 
-func main() {
-	ch := make(chan os.Signal);
-	//如果不指定要监听的信号，那么默认是所有信号
-	signal.Notify(ch);
+var status = true
 
-	//停止向ch转发信号，ch将不再收到任何信号
-	signal.Stop(ch);
-	//ch将一直阻塞在这里，因为它将收不到任何信号
-	//所以下面的exit输出也无法执行
-	<-ch;
-	fmt.Println("exit");
+func main() {
+	fmt.Println("开始")
+
+	go func() {
+		var sigc = make(chan os.Signal, 1)
+		signal.Notify(sigc, os.Interrupt, os.Kill)
+		<-sigc
+		fmt.Println("Got interrupt, shutting down...")
+		go stop()
+	}()
+
+	<-make(chan struct{})
+
+}
+
+func stop() {
+	fmt.Println("stop 5...")
+	time.Sleep(time.Duration(5) * time.Second)
+	fmt.Println("stop ...")
+	os.Exit(0)
 }
 ```
