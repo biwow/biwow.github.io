@@ -1,0 +1,14 @@
+#! /bin/sh
+
+wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz
+xz -d node-v10.9.0-linux-x64.tar.xz
+tar xvf node-v10.9.0-linux-x64.tar
+mv node-v10.9.0-linux-x64 /usr/local/nodejs
+ln -s /usr/local/nodejs/bin/node /usr/bin/node
+ln -s /usr/local/nodejs/bin/npm /usr/bin/npm
+rm -f node-v10.9.0-linux-x64.tar
+
+echo "export NODE_HOME=/usr/local/nodejs" >> /etc/profile
+echo "export PATH=\$PATH:\$NODE_HOME/bin" >> /etc/profile
+echo "export NODE_PATH=\$NODE_HOME/lib/node_modules" >> /etc/profile
+echo "source /etc/profile"
