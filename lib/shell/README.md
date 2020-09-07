@@ -15,3 +15,13 @@ curl -sSf http://biwow.com/lib/shell/nodejs-8.17.0 | sh
 ```
 curl -sSf http://biwow.com/lib/shell/nodejs-10.15.0 | sh
 ```
+
+#### nodejs-10.9.0
+```
+curl -sSf http://biwow.com/lib/shell/nodejs-10.9.0 | sh
+```
+
+#### docker-ce
+```
+curl -sSf http://biwow.com/lib/shell/docker-ce | sh
+```
