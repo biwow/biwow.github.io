@@ -1,0 +1,41 @@
+#! /bin/sh
+
+# 让iptables看见桥接的信息
+if [ -z "`grep '^net.bridge.bridge-nf-call-ip6tables' /etc/sysctl.conf`" ];then
+	echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.conf
+else
+	sed -i "s/^net.bridge.bridge-nf-call-ip6tables *=.*/net.bridge.bridge-nf-call-ip6tables = 1/g" /etc/sysctl.conf
+fi
+if [ -z "`grep '^net.bridge.bridge-nf-call-iptables' /etc/sysctl.conf`" ];then
+	echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.conf
+else
+	sed -i "s/^net.bridge.bridge-nf-call-iptables *=.*/net.bridge.bridge-nf-call-iptables = 1/g" /etc/sysctl.conf
+fi
+sudo sysctl --system
+
+# 增加k8s源
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+# 关闭selinux防火墙
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+yum install -y kubelet-1.19.3 kubeadm-1.19.3 kubectl-1.19.3 --disableexcludes=kubernetes
+# 开机启动
+systemctl enable kubelet && systemctl start kubelet
+
+# 下载镜像
+version=v1.19.3
+images=(`kubeadm config images list --kubernetes-version=$version|awk -F '/' '{print $2}'`)
+for imagename in ${images[@]} ; do
+  docker pull k8s.gcr.io/$imagename
+done
