@@ -30,3 +30,8 @@ curl -sSf http://biwow.com/lib/shell/nodejs-10.9.0 | sh
 ```
 curl -sSf http://biwow.com/lib/shell/docker-ce | sh
 ```
+
+#### mysql
+```
+curl -sSf http://biwow.com/lib/shell/mysql | sh
+```
