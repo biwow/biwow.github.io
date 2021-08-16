@@ -3,9 +3,9 @@
 curl -sSf http://biwow.com/lib/shell/golang-1.13.10 | sh
 ```
 
-### golang-1.16.2
+### golang-1.16.7
 ```
-curl -sSf http://biwow.com/lib/shell/golang-1.16.2 | sh
+curl -sSf http://biwow.com/lib/shell/golang-1.16.7 | sh
 ```
 
 ### NodeJS
