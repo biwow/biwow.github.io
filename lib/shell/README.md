@@ -33,5 +33,5 @@ curl -sSf http://biwow.com/lib/shell/docker-ce | sh
 
 #### mysql
 ```
-curl -sSf http://biwow.com/lib/shell/mysql | sh
+curl -sSf http://biwow.com/lib/shell/mysql-5.7.22 | sh
 ```
