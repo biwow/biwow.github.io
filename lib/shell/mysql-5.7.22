@@ -3,28 +3,28 @@
 #date 20210810
 
 #字体颜色设置
-huangse(){
-echo -e "\033[033;1m$@\033[0m";
+huangse() {
+  echo -e "\033[033;1m$@\033[0m"
 }
-hongse(){
-echo -e "\033[031;1m$@\033[0m";
+hongse() {
+  echo -e "\033[031;1m$@\033[0m"
 }
-lvse(){
-echo -e "\033[032;1m$@\033[0m";
+lvse() {
+  echo -e "\033[032;1m$@\033[0m"
 }
 #------------------------------------------------------------------------------------------------------------
 #检测是否安装docker
-lvse 本次mysql采用docker部署，正在检测docker服务是否安装
-docker --version 
+lvse 本次mysql采用docker部署,正在检测docker服务是否安装
+docker --version
 if
-	[ ! $? -eq 0 ]
-		then
-		hongse 本服务采用docker安装,检测到本机为安装docker,请先安装docker...
-		exit 1
-		else
-		if [ ! $(systemctl status docker|awk '/Active/{print $3}') = "(runing)" ]
-			then systemctl start docker 
-		fi
+  [ ! $? -eq 0 ]
+then
+  hongse 本服务采用docker安装,检测到本机为安装docker,请先安装docker...
+  exit 1
+else
+  if [ ! $(systemctl status docker | awk '/Active/{print $3}') = "(runing)" ]; then
+    systemctl start docker
+  fi
 fi
 lvse 已检测docker服务已安装并已启动
 
@@ -32,15 +32,13 @@ echo "=============================================================="
 #判断默认名称是否被占用，如占用需交互确定名称
 mysql_name=mysql
 if
-	 [ $(docker ps -a|awk '{print $NF}'|grep -w $mysql_name|wc -l) -gt  0 ]
-	then
-	while [ $(docker ps -a|awk '{print $NF}'|grep -w $mysql_name|wc -l) -gt 0 ]
-	do
-		read -p $(huangse "mysql的docker名称被占用,请重新输入:") mysql_name
-		 [ -z $mysql_name ] &&  mysql_name=mysql
-	done
-fi	
-
+  [ $(docker ps -a | awk '{print $NF}' | grep -w $mysql_name | wc -l) -gt 0 ]
+then
+  while [ $(docker ps -a | awk '{print $NF}' | grep -w $mysql_name | wc -l) -gt 0 ]; do
+    read -p $(huangse "mysql的docker名称被占用,请重新输入:") mysql_name
+    [ -z $mysql_name ] && mysql_name=mysql
+  done
+fi
 
 #mysql数据目录创建
 lvse mysql数据目录创建
@@ -49,11 +47,11 @@ mkdir /opt/docker/mysql/data -p
 #下载mysql镜像
 lvse 开始下载mysql镜像
 docker pull mysql:5.7.22
-lvse mysql镜像已下载完成,当前版本为：mysql:5.7.22
+lvse mysql镜像已下载完成,当前版本为: mysql:5.7.22
 
 #配置文件编写
 lvse mysql配置文件创建
-cat > /opt/docker/mysql/my.cnf <<EOF
+cat >/opt/docker/mysql/my.cnf <<EOF
 [client]
 port=3306
 socket=/tmp/mysql.sock
@@ -96,25 +94,24 @@ skip-name-resolve
 log-error=/var/lib/mysql/mysql.log
 EOF
 
-mysql_PASS=$(date +%s|md5sum |base64 |head -c 24)
+mysql_PASS=$(date +%s | md5sum | base64 | head -c 24)
 
 #启动mysql
 lvse mysql容器启动
-docker run -itd --restart=unless-stopped -v /etc/localtime:/etc/localtime -v /etc/timezone:/etc/timezone  --name $mysql_name -p 13306:3306 -v /opt/docker/mysql/data:/var/lib/mysql -v /opt/docker/mysql/my.cnf:/etc/mysql/my.cnf -e MYSQL_ROOT_PASSWORD=$mysql_PASS  mysql:5.7.22 
+docker run -itd --restart=unless-stopped -v /etc/localtime:/etc/localtime -v /etc/timezone:/etc/timezone --name $mysql_name -p 13306:3306 -v /opt/docker/mysql/data:/var/lib/mysql -v /opt/docker/mysql/my.cnf:/etc/mysql/my.cnf -e MYSQL_ROOT_PASSWORD=$mysql_PASS mysql:5.7.22
 sleep 10
 if
-        [ $(docker ps -a |grep $mysql_name |grep "Up"|wc -l) -gt 0 ]
-        then
-                lvse -------------------------------------------------------------------------------------------------
-                lvse mysql安装成功,详细信息如下:
-                lvse mysql登录用户为：root
-                lvse mysql登录密码为：$mysql_PASS
-		        lvse mysql当前版本为：mysql:5.7.22
-                lvse mysql数据连接端口为：13306
-				lvse mysql安装目录为：/opt/docker/mysql
-                lvse -------------------------------------------------------------------------------------------------
-	else
-	hongse  mysql启动失败,请排查原因...
-	exit 1
+  [ $(docker ps -a | grep $mysql_name | grep "Up" | wc -l) -gt 0 ]
+then
+  lvse -------------------------------------------------------------------------------------------------
+  lvse mysql安装成功,详细信息如下:
+  lvse mysql登录用户为: root
+  lvse mysql登录密码为: $mysql_PASS
+  lvse mysql当前版本为: mysql:5.7.22
+  lvse mysql数据连接端口为: 13306
+  lvse mysql安装目录为: /opt/docker/mysql
+  lvse -------------------------------------------------------------------------------------------------
+else
+  hongse mysql启动失败,请排查原因...
+  exit 1
 fi
-
