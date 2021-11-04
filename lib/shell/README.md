@@ -21,9 +21,9 @@ curl -sSf http://biwow.com/lib/shell/nodejs-8.17.0 | sh
 curl -sSf http://biwow.com/lib/shell/nodejs-10.15.0 | sh
 ```
 
-#### nodejs-10.9.0
+#### nodejs-12.22.1
 ```
-curl -sSf http://biwow.com/lib/shell/nodejs-10.9.0 | sh
+curl -sSf http://biwow.com/lib/shell/nodejs-12.22.1 | sh
 ```
 
 #### docker-ce
