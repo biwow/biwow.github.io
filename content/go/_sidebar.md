@@ -1,4 +1,0 @@
-- [名词解释]
-  - [基础](content/blockchain/context/base.md)
-  - [共识](content/blockchain/context/consensus.md)
-  - [加密](content/blockchain/context/crypto.md)

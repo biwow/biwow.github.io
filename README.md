@@ -1,2 +1,0 @@
-# biwow.github.com
-blog
