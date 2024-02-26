@@ -726,6 +726,7 @@ header nav {
 }
 
 .add-image {
+    width: 100%;
     height: 330px;
     background-position: center;
     background-repeat: no-repeat;
