@@ -249,7 +249,7 @@ header nav {
 }
 
 .logo {
-    width: 35%;
+    width: 25%;
     height: 95px;
     display: flex;
     align-items: center;
@@ -259,7 +259,7 @@ header nav {
 }
 
 .menu {
-    width: 65%;
+    width: 75%;
     height: 95px;
 }
 
