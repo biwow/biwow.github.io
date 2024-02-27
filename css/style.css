@@ -392,6 +392,7 @@ header nav {
     font-weight: 700;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .search-btn:hover {
@@ -432,12 +433,12 @@ header nav {
 -------------------------------------------------------------*/
 .statistic {
     width: 100%;
-    min-height: 550px;
-    padding: 90px 0 0 0;
+    min-height: 390px;
+    padding: 20px 0 0 0;
 }
 
 .statistic h3 {
-    padding: 20px 0;
+    padding: 10px 0 0 0;
 }
 
 .statistic p {
@@ -447,7 +448,7 @@ header nav {
 .statistic-box {
     background-color: #F6F5F4;
     width: 100%;
-    height: 240px;
+    height: 160px;
     margin: 0 0 30px 0;
     padding: 20px;
     float: right;
@@ -474,7 +475,7 @@ header nav {
 -------------------------------------------------------------*/
 .appartments {
     background-color: #F6F5F4;
-    padding: 90px 0px 70px 0px;
+    padding: 40px 0px 50px 0px;
 }
 
 .appartments h2 {
@@ -651,7 +652,7 @@ header nav {
 
 /* Work Service */
 .work-services {
-    padding: 0 0 15px 0;
+    padding: 0;
 }
 
 .work-services-title p {
@@ -721,8 +722,8 @@ header nav {
     8. ADDS
 -------------------------------------------------------------*/
 .add {
-    padding: 90px 0 90px 0;
-    background-color: #fff;
+    padding: 25px 0 0 0;
+    background-color: #F6F5F4;
 }
 
 .add-image {
@@ -730,9 +731,9 @@ header nav {
     height: 330px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     position: relative;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
 .add1 {
@@ -932,7 +933,6 @@ footer {
 
     .statistic-box:nth-child(1) {
         float: left;
-        margin-top: 50px;
     }
 
     .statistic-box:nth-child(2) {
